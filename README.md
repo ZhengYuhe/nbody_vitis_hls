@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - On your ece machine, run command
-  source /afs/ece.cmu.edu/class/ece643/software/scripts/setup_vitis21.lab.sh
+  `source /afs/ece.cmu.edu/class/ece643/software/scripts/setup_vitis21.lab.sh`
   
 ## Creating a New Project
 
