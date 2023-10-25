@@ -9,15 +9,35 @@
 int main()
 {
     printf("Starting Nbody sims....\n");
-    float particles[75];
-    float original_particles[75];
-    float temp[75];
+    float *particles;
+    float *original_particles;
+    float *temp;
     float a;
     float b;
     float c;
     float d;
     float e;
 
+    particles = new float[INPUT_LENGTH];
+    if (particles == NULL){
+        printf("Error allocating particles\n"); 
+        exit(EXIT_FAILURE);
+    }
+
+    original_particles = new float[INPUT_LENGTH];
+    if (original_particles == NULL){
+        printf("Error allocating original_particles\n"); 
+        exit(EXIT_FAILURE);
+    }
+
+    temp = new float[INPUT_LENGTH];
+    if (temp == NULL){
+        printf("Error allocating temp\n"); 
+        exit(EXIT_FAILURE);
+    }
+
+
+    
     for (int i = 0; i < 75; i += 5)
     {
         a = 0.1f * i;
@@ -50,6 +70,10 @@ int main()
             passed = true;
         }
     }
+
+    delete [] particles;
+    delete [] original_particles;
+    delete [] temp;
 
     if (passed)
     {
