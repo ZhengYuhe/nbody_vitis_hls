@@ -8,7 +8,6 @@ void nBodySimulation2D(fixed_t particles[INPUT_LENGTH * 5], fixed_t temp[INPUT_L
     const fixed_t time_step = 0.01;
     const fixed_t G = 6.67430;
     const fixed_t min_cul_radius = 0.25;
-// fixed_t test = fixed_t(1.0);
 #pragma HLS pipeline off
     for (int i = 0; i < INPUT_LENGTH; i += 5)
     {
@@ -33,11 +32,7 @@ void nBodySimulation2D(fixed_t particles[INPUT_LENGTH * 5], fixed_t temp[INPUT_L
                 fixed_t dy = y2 - y1;
 
                 float distance_float = sqrt(dx.to_float() * dx.to_float() + dy.to_float() * dy.to_float());
-                // fixed_t distance = static_cast<fixed_t>(sqrt(static_cast<float>(dx * dx + dy * dy)));
-                // fixed_t a = dx * dx + dy * dy;
-                // double distance_float = sqrt(a.to_double());
-                // fixed_t distance = static_cast<fixed_t>(distance_float);
-                // float distance = 3.0f;
+
                 // Define gravitational constant
                 // Calculate the gravitational force in 2D
                 fixed_t distance = static_cast<fixed_t>(distance_float);
@@ -56,36 +51,16 @@ void nBodySimulation2D(fixed_t particles[INPUT_LENGTH * 5], fixed_t temp[INPUT_L
         fixed_t vx = particles[i + 2];
         fixed_t vy = particles[i + 3];
         fixed_t mass = particles[i + 4];
-        // // Calculate acceleration in 2D
-        // fixed_t ax = force_x / mass;
-        // fixed_t ay = force_y / mass;
-        // // Update velocity in 2D using the calculated acceleration and time step
-        // temp[i + 2] = static_cast<fixed_t>(vx.to_float() + ax.to_float() * time_step);
-        // temp[i + 3] = static_cast<fixed_t>(vy.to_float() + ay.to_float() * time_step);
-        // temp[i] = static_cast<fixed_t>(x1.to_float() + temp[i+2].to_float()*time_step);
-        // temp[i+1] = static_cast<fixed_t>(y1.to_float() + temp[i+3].to_float()*time_step);
-        // temp[i+4] = mass;
 
-        // float x1 = particles[i].to_float();
-        // float y1 = particles[i + 1].to_float();
-        // float vx = particles[i + 2].to_float();
-        // float vy = particles[i + 3].to_float();
-        // float mass = particles[i + 4].to_float();
         // Calculate acceleration in 2D
         float ax = force_x.to_float() / mass.to_float();
         float ay = force_y.to_float() / mass.to_float();
         // Update velocity in 2D using the calculated acceleration and time step
         temp[i + 2] = vx + static_cast<fixed_t>(ax) * time_step;
         temp[i + 3] = vx + static_cast<fixed_t>(ay) * time_step;
-        // temp[i + 2] = static_cast<fixed_t>(vx.to_float() + ax.to_float() * time_step.to_float());
-        // temp[i + 3] = static_cast<fixed_t>(vy.to_float() + ay * time_step.to_float());
         temp[i] = x1 + temp[i + 2] * time_step;
         temp[i + 1] = y1 + temp[i + 3] * time_step;
-        // temp[i] = static_cast<fixed_t>(x1.to_float() + temp[i+2].to_float()*time_step.to_float());
-        // temp[i+1] = static_cast<fixed_t>(y1.to_float() + temp[i+3].to_float()*time_step.to_float());
         temp[i + 4] = mass;
-        // test *= 2;
-        // printf("Check out this var %s\n", test.to_string().c_str());
     }
 
     for (int i = 0; i < INPUT_LENGTH; i += 5)
