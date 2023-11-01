@@ -18,26 +18,27 @@ int main()
     float d;
     float e;
 
-    particles = new float[INPUT_LENGTH];
-    if (particles == NULL){
-        printf("Error allocating particles\n"); 
+    particles = new float[INPUT_LENGTH * 5];
+    if (particles == NULL)
+    {
+        printf("Error allocating particles\n");
         exit(EXIT_FAILURE);
     }
 
-    original_particles = new float[INPUT_LENGTH];
-    if (original_particles == NULL){
-        printf("Error allocating original_particles\n"); 
+    original_particles = new float[INPUT_LENGTH * 5];
+    if (original_particles == NULL)
+    {
+        printf("Error allocating original_particles\n");
         exit(EXIT_FAILURE);
     }
 
-    temp = new float[INPUT_LENGTH];
-    if (temp == NULL){
-        printf("Error allocating temp\n"); 
+    temp = new float[INPUT_LENGTH * 5];
+    if (temp == NULL)
+    {
+        printf("Error allocating temp\n");
         exit(EXIT_FAILURE);
     }
 
-
-    
     for (int i = 0; i < 75; i += 5)
     {
         a = 0.1f * i;
@@ -71,9 +72,9 @@ int main()
         }
     }
 
-    delete [] particles;
-    delete [] original_particles;
-    delete [] temp;
+    delete[] particles;
+    delete[] original_particles;
+    delete[] temp;
 
     if (passed)
     {
