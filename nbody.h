@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ap_fixed.h"
 
-#define INPUT_LENGTH (15)
+#define INPUT_LENGTH (100)
 typedef ap_fixed<16, 8, > fixed_t;
 
 extern "C"
