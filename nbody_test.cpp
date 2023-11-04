@@ -33,13 +33,17 @@ int main()
         }
     }
     fclose(fp);
-
-    nBodySimulation2D(particles, temp);
-
+    int num_interations = 10;
     fp = fopen("out.dat", "w");
-    for (i = 0; i < INPUT_LENGTH; i++)
+
+    for (int i = 0; i < num_interations; i++)
     {
-        fprintf(fp, "%f %f %f %f %f \n", particles[i], particles[i + 1], particles[i + 2], particles[i + 3], particles[i + 4]);
+        nBodySimulation2D(particles, temp);
+
+        for (i = 0; i < INPUT_LENGTH; i++)
+        {
+            fprintf(fp, "%f %f %f %f %f \n", particles[i], particles[i + 1], particles[i + 2], particles[i + 3], particles[i + 4]);
+        }
     }
     fclose(fp);
 
