@@ -5,13 +5,13 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
     const float time_step = 0.01;
     const float G = 6.67430e-11f;
     const float min_cul_radius = 0.25;
-    // fixed_t test = 1.0;
-    // #pragma HLS pipeline off
+// fixed_t test = 1.0;
+#pragma HLS pipeline off
     for (int i = 0; i < INPUT_LENGTH; i += 5)
     {
 
-        // #pragma HLS pipeline off
-#pragma HLS task
+#pragma HLS pipeline off
+        // #pragma HLS task
         float force_x = 0;
         float force_y = 0;
 
@@ -64,14 +64,14 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
         // printf("Check out this var %f\n", static_cast<fixed_t>(test));
     }
 
-    for (int i = 0; i < INPUT_LENGTH; i += 5)
-    {
-        particles[i] = temp[i];
-        particles[i + 1] = temp[i + 1];
-        particles[i + 2] = temp[i + 2];
-        particles[i + 3] = temp[i + 3];
-        particles[i + 4] = temp[i + 4];
-    }
+    // for (int i = 0; i < INPUT_LENGTH; i += 5)
+    // {
+    //     particles[i] = temp[i];
+    //     particles[i + 1] = temp[i + 1];
+    //     particles[i + 2] = temp[i + 2];
+    //     particles[i + 3] = temp[i + 3];
+    //     particles[i + 4] = temp[i + 4];
+    // }
 }
 
 // #include "nbody.h"
@@ -88,11 +88,11 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
 // #pragma HLS pipeline off
 //     for (int i = 0; i < INPUT_LENGTH; i += 5)
 //     {
-// #pragma HLS pipeline off
+// // #pragma HLS pipeline off
 
 //         fixed_t force_x = 0;
 //         fixed_t force_y = 0;
-
+//         // #pragma HLS pipeline
 //         for (int j = 0; j < INPUT_LENGTH; j += 5)
 //         {
 //             if (i != j)
@@ -140,12 +140,12 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
 //         temp[i + 4] = mass;
 //     }
 
-//     for (int i = 0; i < INPUT_LENGTH; i += 5)
-//     {
-//         particles[i] = temp[i];
-//         particles[i + 1] = temp[i + 1];
-//         particles[i + 2] = temp[i + 2];
-//         particles[i + 3] = temp[i + 3];
-//         particles[i + 4] = temp[i + 4];
-//     }
+//     // for (int i = 0; i < INPUT_LENGTH; i += 5)
+//     // {
+//     //     particles[i] = temp[i];
+//     //     particles[i + 1] = temp[i + 1];
+//     //     particles[i + 2] = temp[i + 2];
+//     //     particles[i + 3] = temp[i + 3];
+//     //     particles[i + 4] = temp[i + 4];
+//     // }
 // }

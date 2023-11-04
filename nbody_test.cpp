@@ -42,7 +42,7 @@ int main()
 
         for (i = 0; i < INPUT_LENGTH; i++)
         {
-            fprintf(fp, "%f %f %f %f %f \n", particles[i], particles[i + 1], particles[i + 2], particles[i + 3], particles[i + 4]);
+            fprintf(fp, "%f %f %f %f %f \n", temp[i], temp[i + 1], temp[i + 2], temp[i + 3], temp[i + 4]);
         }
     }
     fclose(fp);
