@@ -9,12 +9,12 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
 #pragma HLS pipeline off
     for (int i = 0; i < INPUT_LENGTH; i += 5)
     {
-
-#pragma HLS pipeline off
+#pragma HLS unroll factor = 5000
         // #pragma HLS task
+
+#pragma HLS pipeline off // II=10000
         float force_x = 0;
         float force_y = 0;
-
         for (int j = 0; j < INPUT_LENGTH; j += 5)
         {
             if (i != j)
@@ -26,7 +26,7 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
                 float y2 = particles[j + 1];
                 float mass1 = particles[i + 4];
                 float mass2 = particles[j + 4];
-                // Calculate the distance between the two particles in 2D
+                // Calculate the distance between the two particle      s in 2D
                 float dx = x2 - x1;
                 float dy = y2 - y1;
                 // fixed_t distance = static_cast<fixed_t>(sqrt(static_cast<float>(dx * dx + dy * dy)));
@@ -64,14 +64,15 @@ void nBodySimulation2D(float particles[INPUT_LENGTH * 5], float temp[INPUT_LENGT
         // printf("Check out this var %f\n", static_cast<fixed_t>(test));
     }
 
-    // for (int i = 0; i < INPUT_LENGTH; i += 5)
-    // {
-    //     particles[i] = temp[i];
-    //     particles[i + 1] = temp[i + 1];
-    //     particles[i + 2] = temp[i + 2];
-    //     particles[i + 3] = temp[i + 3];
-    //     particles[i + 4] = temp[i + 4];
-    // }
+    for (int i = 0; i < INPUT_LENGTH; i += 5)
+    {
+#pragma HLS unroll factor = 5000
+        particles[i] = temp[i];
+        particles[i + 1] = temp[i + 1];
+        particles[i + 2] = temp[i + 2];
+        particles[i + 3] = temp[i + 3];
+        particles[i + 4] = temp[i + 4];
+    }
 }
 
 // #include "nbody.h"

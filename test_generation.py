@@ -1,9 +1,9 @@
 import random
 
 # Generate 100 random (x, y) tuples with floating-point values
-n = 4000
-min_value = -100.0
-max_value = 100.0
+n = 10000
+min_value = -1000.0
+max_value = 1000.0
 max_mass = 10
 min_mass = -10
 random_tuples = [(random.uniform(min_value, max_value), random.uniform(min_value, max_value), random.uniform(min_value, max_value), random.uniform(min_value, max_value), random.uniform(max_mass, min_mass)) for _ in range(n)]
